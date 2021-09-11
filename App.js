@@ -1,21 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import { View } from "react-native";
+import Header from "./components/header";
+import TodoList from "./components/todoList";
+import { globalStyles } from "./style/global";
+import * as Font from 'expo-font';
+import AppLoading from 'expo-app-loading';
+
+
+const getFonts = () => Font.loadAsync({
+  'OpenSans-Regular': require("./assets/fonts/OpenSans-Regular.ttf"),
+  'OpenSans-Bold': require("./assets/fonts/OpenSans-Bold.ttf"),
+  'OpenSans-Light': require("./assets/fonts/OpenSans-Light.ttf"),
+  'OpenSans-SemiBold': require("./assets/fonts/OpenSans-SemiBold.ttf"),
+});
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+  const [fontsLoaded, setFontsLoaded] = useState(false);  
+  
+  if(fontsLoaded){
+    return (
+      <View style={globalStyles.container}>
+        <Header />
+        <TodoList/>
+      </View>
+      );
+  }    
+  else {
+    return (
+      <AppLoading
+      startAsync={getFonts}
+      onFinish={() => setFontsLoaded(true)}
+      onError={console.warn}
+    />
+    );
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
