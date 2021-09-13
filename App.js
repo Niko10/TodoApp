@@ -1,11 +1,12 @@
+import 'react-native-gesture-handler';
 import React, { useState } from "react";
-import { View } from "react-native";
-import Header from "./components/header";
-import TodoList from "./components/todoList";
+// import { View } from "react-native";
+// import Header from "./components/header";
+// import TodoList from "./components/todoList";
 import { globalStyles } from "./style/global";
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
-
+import RootDrawer from './routes/drawer'
 
 const getFonts = () => Font.loadAsync({
   'OpenSans-Regular': require("./assets/fonts/OpenSans-Regular.ttf"),
@@ -20,10 +21,7 @@ export default function App() {
   
   if(fontsLoaded){
     return (
-      <View style={globalStyles.container}>
-        <Header />
-        <TodoList/>
-      </View>
+      <RootDrawer></RootDrawer>
       );
   }    
   else {
