@@ -8,12 +8,14 @@ import DiaryStack from './diaryStack';
 import TasksStack from './tasksStack';
 import ConfigurationStack from './configurationStack';
 
+
+
 const Drawer = createDrawerNavigator();
 
 export default function RootDrawer(){
     return (
         <NavigationContainer>
-            <Drawer.Navigator initialRouteName="Home">
+            <Drawer.Navigator initialRouteName="Home" >
                 <Drawer.Screen name="Home" component={HomeStack} />
                 <Drawer.Screen name="Tasks" component={TasksStack} />
                 <Drawer.Screen name="Diary" component={DiaryStack} />

@@ -1,12 +1,13 @@
 import 'react-native-gesture-handler';
 import React, { useState } from "react";
-// import { View } from "react-native";
+import { AppRegistry } from "react-native";
 // import Header from "./components/header";
 // import TodoList from "./components/todoList";
 import { globalStyles } from "./style/global";
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import RootDrawer from './routes/drawer'
+import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 
 const getFonts = () => Font.loadAsync({
   'OpenSans-Regular': require("./assets/fonts/OpenSans-Regular.ttf"),
@@ -15,13 +16,16 @@ const getFonts = () => Font.loadAsync({
   'OpenSans-SemiBold': require("./assets/fonts/OpenSans-SemiBold.ttf"),
 });
 
+
 export default function App() {
 
   const [fontsLoaded, setFontsLoaded] = useState(false);  
   
   if(fontsLoaded){
     return (
-      <RootDrawer></RootDrawer>
+      <PaperProvider>
+        <RootDrawer></RootDrawer>
+        </PaperProvider>
       );
   }    
   else {
@@ -35,3 +39,4 @@ export default function App() {
   }
 }
 
+AppRegistry.registerComponent("TodoApp", ()=> App)
